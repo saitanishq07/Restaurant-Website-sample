@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { GALLERY_ITEMS } from '../data/restaurantData';
 import { Flame, Maximize2 } from 'lucide-react';
 import LightboxModal from './LightboxModal';
@@ -65,41 +64,34 @@ export default function GallerySection() {
         </div>
 
         {/* Editorial Masonry Grid */}
-        <motion.div layout className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
-          <AnimatePresence mode="popLayout">
-            {filteredItems.map((item, index) => (
-              <motion.div
-                key={item.id}
-                layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.4 }}
-                onClick={() => handleOpenLightbox(index)}
-                className="group relative cursor-pointer overflow-hidden border border-ember-gold/20 bg-ember-dark break-inside-avoid"
-              >
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-auto object-cover filter brightness-90 group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
+        <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+          {filteredItems.map((item, index) => (
+            <div
+              key={item.id}
+              onClick={() => handleOpenLightbox(index)}
+              className="group relative cursor-pointer overflow-hidden border border-ember-gold/20 bg-ember-dark break-inside-avoid"
+            >
+              <img
+                src={item.image}
+                alt={item.title}
+                className="w-full h-auto object-cover filter brightness-90 group-hover:scale-105 transition-transform duration-500 ease-out"
+              />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-ember-black/90 via-ember-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex flex-col justify-end">
-                  <span className="text-[9px] font-sans tracking-[0.3em] text-ember-gold uppercase font-semibold">
-                    {item.category}
-                  </span>
-                  <h3 className="font-serif text-xl font-normal text-ember-cream">
-                    {item.title}
-                  </h3>
-                  <div className="mt-2 flex items-center space-x-1.5 text-xs text-ember-gold font-sans uppercase tracking-widest font-medium">
-                    <Maximize2 className="w-3.5 h-3.5" />
-                    <span>VIEW FULLSCREEN</span>
-                  </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-ember-black/90 via-ember-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex flex-col justify-end">
+                <span className="text-[9px] font-sans tracking-[0.3em] text-ember-gold uppercase font-semibold">
+                  {item.category}
+                </span>
+                <h3 className="font-serif text-xl font-normal text-ember-cream">
+                  {item.title}
+                </h3>
+                <div className="mt-2 flex items-center space-x-1.5 text-xs text-ember-gold font-sans uppercase tracking-widest font-medium">
+                  <Maximize2 className="w-3.5 h-3.5" />
+                  <span>VIEW FULLSCREEN</span>
                 </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Lightbox Modal */}

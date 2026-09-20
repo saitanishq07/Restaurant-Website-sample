@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Calendar, Clock, Users, Flame, Check, Loader2, Sparkles } from 'lucide-react';
+import { Calendar, Clock, Users, Flame, Loader2, Sparkles } from 'lucide-react';
 import ReservationModal from './ReservationModal';
 
 export default function ReservationSection({ reservationNotes = [], onClearNotes }) {
@@ -26,7 +25,6 @@ export default function ReservationSection({ reservationNotes = [], onClearNotes
   const guestOptions = ['2', '3', '4', '5', '6', '7+'];
   const occasionOptions = ['None', 'Anniversary', 'Birthday', 'Business Dinner', 'Date Night', 'Celebration'];
 
-  // Update special requests when reservationNotes prop updates
   useEffect(() => {
     if (reservationNotes && reservationNotes.length > 0) {
       const dishNames = reservationNotes.map((d) => d.name).join(', ');
@@ -43,7 +41,6 @@ export default function ReservationSection({ reservationNotes = [], onClearNotes
 
     setIsChecking(true);
 
-    // Simulate 1.2s availability check animation
     setTimeout(() => {
       setIsChecking(false);
       const refNumber = `ES-${Math.floor(100000 + Math.random() * 900000)}`;

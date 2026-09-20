@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { TIMELINE_MILESTONES } from '../data/restaurantData';
 import { Flame } from 'lucide-react';
 
@@ -33,12 +32,8 @@ export default function StoryTimeline() {
             {TIMELINE_MILESTONES.map((item, index) => {
               const isEven = index % 2 === 0;
               return (
-                <motion.div
+                <div
                   key={item.year}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-80px' }}
-                  transition={{ duration: 0.7, delay: index * 0.1 }}
                   className={`relative flex flex-col md:flex-row items-center ${
                     isEven ? 'md:flex-row-reverse' : ''
                   }`}
@@ -65,7 +60,7 @@ export default function StoryTimeline() {
 
                   {/* Empty Spacer */}
                   <div className="hidden md:block w-1/2" />
-                </motion.div>
+                </div>
               );
             })}
           </div>

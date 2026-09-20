@@ -1,11 +1,10 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Flame, Sparkles, Users, Wine, Calendar } from 'lucide-react';
+import { Flame } from 'lucide-react';
 
 export default function PrivateDiningSection({ onOpenReservation }) {
   const occasions = [
     { title: 'Celebrations', text: 'Milestone birthdays, family reunions, and festive honors.' },
-    { title: 'Corporate Dinners', text: 'Executive executive hosting with quiet ambient privacy.' },
+    { title: 'Corporate Dinners', text: 'Executive hosting with quiet ambient privacy.' },
     { title: 'Anniversaries', text: 'Romance crafted around custom wine flights and candlelit hearth light.' },
     { title: 'Intimate Gatherings', text: 'Tailored tasting progressions for up to 18 guests.' },
   ];
@@ -16,13 +15,7 @@ export default function PrivateDiningSection({ onOpenReservation }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           {/* Content Column */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.8 }}
-            className="lg:col-span-6 space-y-8"
-          >
+          <div className="lg:col-span-6 space-y-8">
             <div className="flex items-center space-x-2 text-ember-gold text-xs tracking-[0.3em] font-sans uppercase">
               <Flame className="w-4 h-4" />
               <span>BESPOKE GATHERINGS</span>
@@ -59,16 +52,10 @@ export default function PrivateDiningSection({ onOpenReservation }) {
                 ENQUIRE FOR PRIVATE DINING
               </button>
             </div>
-          </motion.div>
+          </div>
 
           {/* Immersive Image Column */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-6 relative"
-          >
+          <div className="lg:col-span-6 relative">
             <div className="relative z-10 aspect-[4/5] overflow-hidden border border-ember-gold/20 group">
               <img
                 src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&q=80&w=1200"
@@ -79,7 +66,7 @@ export default function PrivateDiningSection({ onOpenReservation }) {
             </div>
 
             <div className="absolute -bottom-4 -left-4 w-full h-full border border-ember-gold/20 pointer-events-none hidden sm:block" />
-          </motion.div>
+          </div>
 
         </div>
       </div>

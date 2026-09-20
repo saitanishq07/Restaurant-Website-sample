@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { EXPERIENCES } from '../data/restaurantData';
 import { ArrowRight, Flame } from 'lucide-react';
@@ -26,30 +25,18 @@ export default function ExperiencesSection({ onOpenReservation }) {
         {/* Asymmetric Layout */}
         <div className="space-y-24">
           
-          {/* Experience 1: À La Carte (Large Left Image, Text Right) */}
+          {/* Experience 1: À La Carte */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.8 }}
-              className="lg:col-span-7 relative aspect-[16/10] sm:aspect-[16/9] overflow-hidden border border-ember-gold/20 group"
-            >
+            <div className="lg:col-span-7 relative aspect-[16/10] sm:aspect-[16/9] overflow-hidden border border-ember-gold/20 group">
               <img
                 src={EXPERIENCES[0].image}
                 alt={EXPERIENCES[0].title}
                 className="w-full h-full object-cover filter brightness-90 group-hover:scale-105 transition-transform duration-700 ease-out"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ember-black/80 via-transparent to-transparent" />
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.8 }}
-              className="lg:col-span-5 space-y-6"
-            >
+            <div className="lg:col-span-5 space-y-6">
               <span className="text-[10px] font-sans tracking-[0.3em] text-ember-gold uppercase font-semibold">
                 EXPERIENCE 01
               </span>
@@ -81,18 +68,12 @@ export default function ExperiencesSection({ onOpenReservation }) {
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
                 </Link>
               </div>
-            </motion.div>
+            </div>
           </div>
 
-          {/* Experience 2: Chef's Table (Text Left, Image Right) */}
+          {/* Experience 2: Chef's Table */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.8 }}
-              className="lg:col-span-5 lg:order-1 order-2 space-y-6"
-            >
+            <div className="lg:col-span-5 lg:order-1 order-2 space-y-6">
               <span className="text-[10px] font-sans tracking-[0.3em] text-ember-gold uppercase font-semibold">
                 EXPERIENCE 02
               </span>
@@ -124,48 +105,30 @@ export default function ExperiencesSection({ onOpenReservation }) {
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
                 </button>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.8 }}
-              className="lg:col-span-7 lg:order-2 order-1 relative aspect-[16/10] sm:aspect-[16/9] overflow-hidden border border-ember-gold/20 group"
-            >
+            <div className="lg:col-span-7 lg:order-2 order-1 relative aspect-[16/10] sm:aspect-[16/9] overflow-hidden border border-ember-gold/20 group">
               <img
                 src={EXPERIENCES[1].image}
                 alt={EXPERIENCES[1].title}
                 className="w-full h-full object-cover filter brightness-90 group-hover:scale-105 transition-transform duration-700 ease-out"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ember-black/80 via-transparent to-transparent" />
-            </motion.div>
+            </div>
           </div>
 
-          {/* Experience 3: Private Dining (Full Width Portrait Composition) */}
+          {/* Experience 3: Private Dining */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.8 }}
-              className="lg:col-span-7 relative aspect-[16/10] sm:aspect-[16/9] overflow-hidden border border-ember-gold/20 group"
-            >
+            <div className="lg:col-span-7 relative aspect-[16/10] sm:aspect-[16/9] overflow-hidden border border-ember-gold/20 group">
               <img
                 src={EXPERIENCES[2].image}
                 alt={EXPERIENCES[2].title}
                 className="w-full h-full object-cover filter brightness-90 group-hover:scale-105 transition-transform duration-700 ease-out"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ember-black/80 via-transparent to-transparent" />
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.8 }}
-              className="lg:col-span-5 space-y-6"
-            >
+            <div className="lg:col-span-5 space-y-6">
               <span className="text-[10px] font-sans tracking-[0.3em] text-ember-gold uppercase font-semibold">
                 EXPERIENCE 03
               </span>
@@ -197,7 +160,7 @@ export default function ExperiencesSection({ onOpenReservation }) {
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
                 </button>
               </div>
-            </motion.div>
+            </div>
           </div>
 
         </div>

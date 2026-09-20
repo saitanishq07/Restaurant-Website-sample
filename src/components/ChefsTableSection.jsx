@@ -1,6 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Flame, Sparkles, Calendar, Users, Wine, Utensils } from 'lucide-react';
+import { Flame, Sparkles, Users, Wine, Utensils } from 'lucide-react';
 
 export default function ChefsTableSection({ onOpenReservation }) {
   const highlights = [

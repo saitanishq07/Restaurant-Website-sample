@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Flame } from 'lucide-react';
 
@@ -10,13 +9,7 @@ export default function IntroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           {/* Left Column: Text & Editorial Typography */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.8 }}
-            className="lg:col-span-6 space-y-8"
-          >
+          <div className="lg:col-span-6 space-y-8">
             <div className="flex items-center space-x-3 text-ember-gold text-xs tracking-[0.3em] font-sans uppercase">
               <Flame className="w-4 h-4 text-ember-gold" />
               <span>THE EMBERS & PHILOSOPHY</span>
@@ -57,16 +50,10 @@ export default function IntroSection() {
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
               </Link>
             </div>
-          </motion.div>
+          </div>
 
           {/* Right Column: Editorial Image Composition */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-6 relative"
-          >
+          <div className="lg:col-span-6 relative">
             <div className="relative z-10 aspect-[4/5] overflow-hidden border border-ember-gold/20 group">
               <img
                 src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&q=80&w=1200"
@@ -87,7 +74,7 @@ export default function IntroSection() {
 
             {/* Decorative fine gold frame line offset */}
             <div className="absolute -bottom-4 -right-4 w-full h-full border border-ember-gold/20 pointer-events-none -z-0 hidden sm:block" />
-          </motion.div>
+          </div>
 
         </div>
       </div>

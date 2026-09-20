@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { RESTAURANT_INFO } from '../data/restaurantData';
-import { Phone, Mail, MessageSquare, MapPin, CheckCircle2, Flame, Send } from 'lucide-react';
+import { Phone, Mail, MessageSquare, CheckCircle2, Flame } from 'lucide-react';
 
 export default function ContactSection() {
   const [activeAction, setActiveAction] = useState(null);
@@ -110,82 +109,72 @@ export default function ContactSection() {
       </div>
 
       {/* Action Dialog Modal */}
-      <AnimatePresence>
-        {activeAction && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setActiveAction(null)}
-              className="fixed inset-0 bg-ember-black/90 backdrop-blur-md"
-            />
+      {activeAction && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div
+            onClick={() => setActiveAction(null)}
+            className="fixed inset-0 bg-ember-black/90 backdrop-blur-md transition-opacity duration-300"
+          />
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              className="relative z-10 w-full max-w-md bg-ember-dark border border-ember-gold/40 p-8 shadow-2xl space-y-4 text-center"
-            >
-              {isSent ? (
-                <div className="space-y-3 py-6">
-                  <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto" />
-                  <h3 className="font-serif text-2xl text-ember-cream">
-                    Message Dispatched
-                  </h3>
-                  <p className="text-xs font-sans text-ember-cream/70">
-                    Our host concierge will respond shortly.
-                  </p>
+          <div className="relative z-10 w-full max-w-md bg-ember-dark border border-ember-gold/40 p-8 shadow-2xl space-y-4 text-center">
+            {isSent ? (
+              <div className="space-y-3 py-6">
+                <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto" />
+                <h3 className="font-serif text-2xl text-ember-cream">
+                  Message Dispatched
+                </h3>
+                <p className="text-xs font-sans text-ember-cream/70">
+                  Our host concierge will respond shortly.
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleSendInquiry} className="space-y-4">
+                <span className="text-[10px] font-sans tracking-[0.3em] text-ember-gold uppercase font-semibold">
+                  {activeAction} CONCIERGE DEMO
+                </span>
+                
+                <h3 className="font-serif text-2xl text-ember-cream">
+                  Contact Ember & Spice Host
+                </h3>
+
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  value={inquiryName}
+                  onChange={(e) => setInquiryName(e.target.value)}
+                  required
+                  className="w-full bg-ember-black border border-ember-gold/20 text-ember-cream p-3 text-xs font-sans focus:outline-none focus:border-ember-gold"
+                />
+
+                <textarea
+                  placeholder={`Type your ${activeAction.toLowerCase()} request...`}
+                  value={inquiryMessage}
+                  onChange={(e) => setInquiryMessage(e.target.value)}
+                  required
+                  rows={3}
+                  className="w-full bg-ember-black border border-ember-gold/20 text-ember-cream p-3 text-xs font-sans focus:outline-none focus:border-ember-gold resize-none"
+                />
+
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setActiveAction(null)}
+                    className="flex-1 py-3 border border-ember-gold/20 text-ember-cream/70 text-xs font-sans uppercase"
+                  >
+                    CANCEL
+                  </button>
+                  <button
+                    type="submit"
+                    className="flex-1 py-3 bg-ember-gold text-ember-black font-sans font-semibold text-xs uppercase"
+                  >
+                    SEND NOW
+                  </button>
                 </div>
-              ) : (
-                <form onSubmit={handleSendInquiry} className="space-y-4">
-                  <span className="text-[10px] font-sans tracking-[0.3em] text-ember-gold uppercase font-semibold">
-                    {activeAction} CONCIERGE DEMO
-                  </span>
-                  
-                  <h3 className="font-serif text-2xl text-ember-cream">
-                    Contact Ember & Spice Host
-                  </h3>
-
-                  <input
-                    type="text"
-                    placeholder="Your Name"
-                    value={inquiryName}
-                    onChange={(e) => setInquiryName(e.target.value)}
-                    required
-                    className="w-full bg-ember-black border border-ember-gold/20 text-ember-cream p-3 text-xs font-sans focus:outline-none focus:border-ember-gold"
-                  />
-
-                  <textarea
-                    placeholder={`Type your ${activeAction.toLowerCase()} request...`}
-                    value={inquiryMessage}
-                    onChange={(e) => setInquiryMessage(e.target.value)}
-                    required
-                    rows={3}
-                    className="w-full bg-ember-black border border-ember-gold/20 text-ember-cream p-3 text-xs font-sans focus:outline-none focus:border-ember-gold resize-none"
-                  />
-
-                  <div className="flex gap-2">
-                    <button
-                      type="button"
-                      onClick={() => setActiveAction(null)}
-                      className="flex-1 py-3 border border-ember-gold/20 text-ember-cream/70 text-xs font-sans uppercase"
-                    >
-                      CANCEL
-                    </button>
-                    <button
-                      type="submit"
-                      className="flex-1 py-3 bg-ember-gold text-ember-black font-sans font-semibold text-xs uppercase"
-                    >
-                      SEND NOW
-                    </button>
-                  </div>
-                </form>
-              )}
-            </motion.div>
+              </form>
+            )}
           </div>
-        )}
-      </AnimatePresence>
+        </div>
+      )}
     </section>
   );
 }

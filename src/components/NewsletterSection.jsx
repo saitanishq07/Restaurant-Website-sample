@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { Flame, CheckCircle2 } from 'lucide-react';
 
 export default function NewsletterSection() {
@@ -34,14 +33,10 @@ export default function NewsletterSection() {
         </p>
 
         {subscribed ? (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="p-4 bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 font-sans text-xs flex items-center justify-center space-x-2 max-w-md mx-auto"
-          >
+          <div className="p-4 bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 font-sans text-xs flex items-center justify-center space-x-2 max-w-md mx-auto">
             <CheckCircle2 className="w-4 h-4" />
             <span>Welcome to Ember & Spice Dispatches. Check your inbox soon.</span>
-          </motion.div>
+          </div>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto pt-2">
             <input

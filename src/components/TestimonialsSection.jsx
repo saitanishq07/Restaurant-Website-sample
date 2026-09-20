@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { TESTIMONIALS } from '../data/restaurantData';
 import { Quote, Flame } from 'lucide-react';
 
@@ -22,14 +21,10 @@ export default function TestimonialsSection() {
 
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {TESTIMONIALS.map((t, idx) => (
-            <motion.div
+          {TESTIMONIALS.map((t) => (
+            <div
               key={t.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: idx * 0.15 }}
-              className="p-8 bg-ember-dark border border-ember-gold/20 relative flex flex-col justify-between space-y-6"
+              className="p-8 bg-ember-dark border border-ember-gold/20 relative flex flex-col justify-between space-y-6 hover:border-ember-gold/50 transition-colors duration-300"
             >
               <Quote className="w-8 h-8 text-ember-gold/20" />
 
@@ -45,7 +40,7 @@ export default function TestimonialsSection() {
                   {t.title}
                 </p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 

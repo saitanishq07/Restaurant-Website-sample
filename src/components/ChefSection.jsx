@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { CHEF_INFO } from '../data/restaurantData';
 import { ArrowRight, Flame, Quote } from 'lucide-react';
@@ -18,13 +17,7 @@ export default function ChefSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           {/* Chef Image Column */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.8 }}
-            className="lg:col-span-5 relative"
-          >
+          <div className="lg:col-span-5 relative">
             <div className="relative z-10 aspect-[3/4] overflow-hidden border border-ember-gold/25 group">
               <img
                 src={CHEF_INFO.image}
@@ -43,18 +36,12 @@ export default function ChefSection() {
               </div>
             </div>
 
-            {/* Subtle Gold Frame Underlay */}
+            {/* Gold Frame Underlay */}
             <div className="absolute -top-4 -left-4 w-full h-full border border-ember-gold/20 pointer-events-none hidden sm:block" />
-          </motion.div>
+          </div>
 
-          {/* Chef Philosophy & Narrative Column */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-7 space-y-8"
-          >
+          {/* Chef Philosophy Column */}
+          <div className="lg:col-span-7 space-y-8">
             <div>
               <h2 className="font-serif text-4xl sm:text-6xl font-light tracking-tight text-ember-cream leading-[1.1]">
                 THE CHEF
@@ -100,7 +87,7 @@ export default function ChefSection() {
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
               </Link>
             </div>
-          </motion.div>
+          </div>
 
         </div>
       </div>

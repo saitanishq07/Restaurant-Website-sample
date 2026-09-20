@@ -1,7 +1,6 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { RESTAURANT_INFO } from '../data/restaurantData';
-import { MapPin, Clock, Car, Navigation, Flame, ShieldCheck } from 'lucide-react';
+import { MapPin, Clock, Car, Navigation, Flame } from 'lucide-react';
 
 export default function LocationSection() {
   return (
@@ -28,16 +27,9 @@ export default function LocationSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
           {/* Custom Styled Dark Map Preview Card */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="lg:col-span-7 bg-ember-dark border border-ember-gold/25 p-6 sm:p-8 space-y-6 relative overflow-hidden"
-          >
+          <div className="lg:col-span-7 bg-ember-dark border border-ember-gold/25 p-6 sm:p-8 space-y-6 relative overflow-hidden">
             {/* Custom Stylized Map Canvas Visual */}
             <div className="relative aspect-[16/10] overflow-hidden border border-ember-gold/20 bg-[#121214] flex flex-col justify-between p-6">
-              {/* Grid Lines Pattern simulating map vectors */}
               <div className="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#D49E6A_1px,transparent_1px),linear-gradient(to_bottom,#D49E6A_1px,transparent_1px)] bg-[size:40px_40px]" />
 
               <div className="relative z-10 flex items-center justify-between">
@@ -112,16 +104,10 @@ export default function LocationSection() {
                 <span>GET DIRECTIONS</span>
               </a>
             </div>
-          </motion.div>
+          </div>
 
           {/* Opening Hours Column */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-5 space-y-8"
-          >
+          <div className="lg:col-span-5 space-y-8">
             <div className="bg-ember-dark border border-ember-gold/25 p-6 sm:p-8 space-y-6">
               <div className="flex items-center space-x-2 text-xs font-sans tracking-[0.2em] text-ember-gold uppercase font-semibold">
                 <Clock className="w-4 h-4" />
@@ -160,7 +146,7 @@ export default function LocationSection() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
 
         </div>
       </div>

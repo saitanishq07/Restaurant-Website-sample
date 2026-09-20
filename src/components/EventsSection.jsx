@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { EVENTS } from '../data/restaurantData';
 import { Flame, Calendar, Clock, ArrowRight, X } from 'lucide-react';
 
@@ -27,11 +26,9 @@ export default function EventsSection({ onOpenReservation }) {
         {/* Events Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {EVENTS.map((evt) => (
-            <motion.div
+            <div
               key={evt.id}
-              whileHover={{ y: -6 }}
-              transition={{ duration: 0.3 }}
-              className="bg-ember-dark border border-ember-gold/20 overflow-hidden flex flex-col justify-between group cursor-pointer"
+              className="bg-ember-dark border border-ember-gold/20 overflow-hidden flex flex-col justify-between group cursor-pointer hover:-translate-y-1.5 transition-all duration-300"
               onClick={() => setSelectedEvent(evt)}
             >
               <div>
@@ -39,7 +36,7 @@ export default function EventsSection({ onOpenReservation }) {
                   <img
                     src={evt.image}
                     alt={evt.title}
-                    className="w-full h-full object-cover filter brightness-90 group-hover:scale-105 transition-transform duration-700 ease-out"
+                    className="w-full h-full object-cover filter brightness-90 group-hover:scale-105 transition-transform duration-500 ease-out"
                   />
                   <div className="absolute top-3 left-3 bg-ember-black/80 backdrop-blur-md px-3 py-1 border border-ember-gold/30 text-[10px] font-sans font-semibold text-ember-gold tracking-widest uppercase flex items-center space-x-1.5">
                     <Calendar className="w-3 h-3" />
@@ -72,79 +69,68 @@ export default function EventsSection({ onOpenReservation }) {
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
 
       {/* Event Detail Modal */}
-      <AnimatePresence>
-        {selectedEvent && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+      {selectedEvent && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+          <div
+            onClick={() => setSelectedEvent(null)}
+            className="fixed inset-0 bg-ember-black/90 backdrop-blur-md transition-opacity duration-300"
+          />
+
+          <div className="relative z-10 w-full max-w-2xl bg-ember-dark border border-ember-gold/30 p-8 shadow-2xl overflow-hidden my-auto space-y-6">
+            <button
               onClick={() => setSelectedEvent(null)}
-              className="fixed inset-0 bg-ember-black/90 backdrop-blur-xl"
-            />
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.94, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.94, y: 20 }}
-              transition={{ duration: 0.3 }}
-              className="relative z-10 w-full max-w-2xl bg-ember-dark border border-ember-gold/30 p-8 shadow-2xl overflow-hidden my-auto space-y-6"
+              className="absolute top-4 right-4 p-2 bg-ember-black/80 rounded-full text-ember-cream hover:text-ember-gold border border-ember-gold/20"
             >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="space-y-3">
+              <div className="flex items-center space-x-2 text-xs font-sans text-ember-gold tracking-[0.25em] uppercase">
+                <Calendar className="w-4 h-4" />
+                <span>{selectedEvent.date} · {selectedEvent.time}</span>
+              </div>
+
+              <h3 className="font-serif text-3xl sm:text-4xl text-ember-cream">
+                {selectedEvent.title}
+              </h3>
+              
+              <p className="font-serif italic text-lg text-ember-gold">
+                "{selectedEvent.tagline}"
+              </p>
+
+              <div className="aspect-video overflow-hidden border border-ember-gold/20 my-4">
+                <img
+                  src={selectedEvent.image}
+                  alt={selectedEvent.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              <p className="font-sans text-sm text-ember-cream/80 leading-relaxed font-light">
+                {selectedEvent.description}
+              </p>
+            </div>
+
+            <div className="pt-4 border-t border-ember-gold/15 flex flex-col sm:flex-row gap-4">
               <button
-                onClick={() => setSelectedEvent(null)}
-                className="absolute top-4 right-4 p-2 bg-ember-black/80 rounded-full text-ember-cream hover:text-ember-gold border border-ember-gold/20"
+                onClick={() => {
+                  setSelectedEvent(null);
+                  onOpenReservation?.();
+                }}
+                className="flex-1 py-3.5 bg-ember-gold text-ember-black font-sans font-semibold text-xs tracking-[0.2em] uppercase hover:bg-ember-gold-light transition-colors"
               >
-                <X className="w-5 h-5" />
+                RESERVE SEATS FOR EVENT
               </button>
-
-              <div className="space-y-3">
-                <div className="flex items-center space-x-2 text-xs font-sans text-ember-gold tracking-[0.25em] uppercase">
-                  <Calendar className="w-4 h-4" />
-                  <span>{selectedEvent.date} · {selectedEvent.time}</span>
-                </div>
-
-                <h3 className="font-serif text-3xl sm:text-4xl text-ember-cream">
-                  {selectedEvent.title}
-                </h3>
-                
-                <p className="font-serif italic text-lg text-ember-gold">
-                  "{selectedEvent.tagline}"
-                </p>
-
-                <div className="aspect-video overflow-hidden border border-ember-gold/20 my-4">
-                  <img
-                    src={selectedEvent.image}
-                    alt={selectedEvent.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-
-                <p className="font-sans text-sm text-ember-cream/80 leading-relaxed font-light">
-                  {selectedEvent.description}
-                </p>
-              </div>
-
-              <div className="pt-4 border-t border-ember-gold/15 flex flex-col sm:flex-row gap-4">
-                <button
-                  onClick={() => {
-                    setSelectedEvent(null);
-                    onOpenReservation?.();
-                  }}
-                  className="flex-1 py-3.5 bg-ember-gold text-ember-black font-sans font-semibold text-xs tracking-[0.2em] uppercase hover:bg-ember-gold-light transition-colors"
-                >
-                  RESERVE SEATS FOR EVENT
-                </button>
-              </div>
-            </motion.div>
+            </div>
           </div>
-        )}
-      </AnimatePresence>
+        </div>
+      )}
     </section>
   );
 }

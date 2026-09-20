@@ -1,7 +1,6 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { INSTAGRAM_TILES, RESTAURANT_INFO } from '../data/restaurantData';
-import { Instagram, Heart, Flame } from 'lucide-react';
+import { Instagram, Heart } from 'lucide-react';
 
 export default function InstagramGrid() {
   return (
@@ -27,11 +26,9 @@ export default function InstagramGrid() {
         {/* 6-Tile Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
           {INSTAGRAM_TILES.map((tile) => (
-            <motion.div
+            <div
               key={tile.id}
-              whileHover={{ scale: 1.03 }}
-              transition={{ duration: 0.3 }}
-              className="relative aspect-square overflow-hidden bg-ember-dark border border-ember-gold/15 group cursor-pointer"
+              className="relative aspect-square overflow-hidden bg-ember-dark border border-ember-gold/15 group cursor-pointer hover:scale-105 transition-transform duration-300"
             >
               <img
                 src={tile.image}
@@ -49,7 +46,7 @@ export default function InstagramGrid() {
                   <span>{tile.likes}</span>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
