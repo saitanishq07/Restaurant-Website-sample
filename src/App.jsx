@@ -32,12 +32,34 @@ function ScrollToTop() {
 }
 
 export default function App() {
-  const [showOpening, setShowOpening] = useState(true);
+  const [showOpening, setShowOpening] = useState(() => {
+    try {
+      return !sessionStorage.getItem('hasSeenEmberOpening');
+    } catch (e) {
+      return true;
+    }
+  });
+
   const [reservationNotes, setReservationNotes] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
 
+  useEffect(() => {
+    if (showOpening) {
+      // Unconditional safety timer to dismiss opening within 1.6s
+      const timer = setTimeout(() => {
+        handleOpeningComplete();
+      }, 1600);
+      return () => clearTimeout(timer);
+    }
+  }, [showOpening]);
+
   const handleOpeningComplete = () => {
+    try {
+      sessionStorage.setItem('hasSeenEmberOpening', 'true');
+    } catch (e) {
+      // Ignore storage errors
+    }
     setShowOpening(false);
   };
 
@@ -68,7 +90,7 @@ export default function App() {
   };
 
   return (
-    <div className="bg-ember-black text-ember-cream min-h-screen selection:bg-ember-gold selection:text-ember-black font-sans">
+    <div className="bg-ember-black text-ember-cream min-h-screen selection:bg-ember-gold selection:text-ember-black font-sans relative">
       <ScrollToTop />
 
       {/* Cinematic Opening Experience */}
