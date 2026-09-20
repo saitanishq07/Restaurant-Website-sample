@@ -1,43 +1,27 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { ChevronDown, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Hero({ onOpenReservation }) {
-  const containerRef = useRef(null);
-  const { scrollY } = useScroll();
-
-  // Subtle image scaling without aggressive parallax
-  const bgScale = useTransform(scrollY, [0, 800], [1, 1.1]);
-  const textY = useTransform(scrollY, [0, 500], [0, 80]);
-  const opacity = useTransform(scrollY, [0, 400], [1, 0.3]);
-
   return (
-    <section
-      ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-ember-black text-ember-cream pt-20"
-    >
-      {/* Background Image with Cinematic Scale & Overlay */}
-      <motion.div
-        style={{ scale: bgScale }}
-        className="absolute inset-0 z-0 select-none pointer-events-none"
-      >
-        <img
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-ember-black text-ember-cream pt-20">
+      {/* Background Image with Ambient Scale */}
+      <div className="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden">
+        <motion.img
+          initial={{ scale: 1.12 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 2.5, ease: 'easeOut' }}
           src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=90&w=2000"
           alt="Ember & Spice Culinary Art"
           className="w-full h-full object-cover object-center filter brightness-50 contrast-110"
         />
-        {/* Dark Editorial Vignette & Ember Gradients */}
         <div className="absolute inset-0 bg-gradient-to-t from-ember-black via-ember-black/60 to-ember-black/40" />
         <div className="absolute inset-0 bg-ember-glow opacity-60 mix-blend-screen" />
-      </motion.div>
+      </div>
 
       {/* Main Content Container */}
-      <motion.div
-        style={{ y: textY, opacity }}
-        className="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center justify-center space-y-8 py-16"
-      >
-        {/* Location Tag */}
+      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center justify-center space-y-8 py-16">
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -48,7 +32,6 @@ export default function Hero({ onOpenReservation }) {
           <span>HYDERABAD · INDIA</span>
         </motion.div>
 
-        {/* Main Editorial Headline */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
@@ -62,7 +45,6 @@ export default function Hero({ onOpenReservation }) {
           </h1>
         </motion.div>
 
-        {/* Supporting Copy */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -72,7 +54,6 @@ export default function Hero({ onOpenReservation }) {
           "Contemporary Indian cuisine shaped by fire, season and memory."
         </motion.p>
 
-        {/* CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -93,9 +74,8 @@ export default function Hero({ onOpenReservation }) {
             EXPLORE THE MENU
           </Link>
         </motion.div>
-      </motion.div>
+      </div>
 
-      {/* Subtle Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

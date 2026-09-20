@@ -22,10 +22,10 @@ export default function StatementSection() {
           {words.map((word, i) => (
             <motion.span
               key={i}
-              initial={{ opacity: 0, y: 35, filter: 'blur(4px)' }}
-              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.7, delay: i * 0.08, ease: 'easeOut' }}
+              transition={{ duration: 0.6, delay: i * 0.08, ease: 'easeOut' }}
               className={`font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-tight ${
                 word === 'FIRE,' || word === 'IMAGINATION.'
                   ? 'text-ember-gold italic font-normal'
