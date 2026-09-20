@@ -5,11 +5,15 @@ export default function OpeningExperience({ onComplete }) {
   const [stage, setStage] = useState(0); // 0: Logo, 1: Tagline, 2: Fade Out
 
   useEffect(() => {
-    // Check prefers-reduced-motion
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) {
-      onComplete?.();
-      return;
+    // Defensive check for prefers-reduced-motion
+    try {
+      const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReducedMotion) {
+        onComplete?.();
+        return;
+      }
+    } catch (err) {
+      console.warn('matchMedia error:', err);
     }
 
     const timer1 = setTimeout(() => setStage(1), 700);
